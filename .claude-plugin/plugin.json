@@ -1,0 +1,22 @@
+{
+  "name": "xplor",
+  "version": "1.0.0",
+  "description": "Structured cognition engine — transforms documents, codebases, and knowledge systems into traversable AI-queryable knowledge graphs. Three modes: Document (PDF→entities), Code (repo→call-chains), Skill Graph (markdown→knowledge network).",
+  "author": {
+    "name": "Xplor",
+    "url": "https://file-xplor.vercel.app"
+  },
+  "homepage": "https://file-xplor.vercel.app",
+  "license": "MIT",
+  "keywords": [
+    "knowledge-graph",
+    "skill-graph",
+    "code-analysis",
+    "document-intelligence",
+    "mcp",
+    "traversal",
+    "agents",
+    "wikilinks",
+    "rag"
+  ]
+}
