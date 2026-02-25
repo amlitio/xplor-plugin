@@ -1,24 +1,32 @@
 # xplor-validate
 
-Validate a skill graph directory and output a quality score with actionable fixes.
+Validate a skill graph directory and output a quality score (0-100) with actionable fixes.
 
 ## Usage
 `/xplor-validate <path>`
 
-## What This Does
+## Examples
+- `/xplor-validate ./my-skills` — Validate a local skill graph directory
+- `/xplor-validate ./therapy-cbt` — Score a domain-specific knowledge graph
+- `/xplor-validate .` — Validate skill graph in current directory
 
-Runs the full Xplor quality validation on a skill graph directory:
+## Scoring System
 
-1. **Broken links** (-10 each): Finds all `[[wikilinks]]` pointing to non-existent files
-2. **Missing descriptions** (-5 each): Files without `description` in YAML frontmatter
-3. **Orphan nodes** (-3 each): Files with no incoming or outgoing links
-4. **Missing type** (-2 each): Files without `type` in frontmatter
-5. **Missing domain** (-1 each): Files without `domain` in frontmatter
-6. **Circular-only** (-2 each): Node pairs that only link to each other
+### Penalties
+| Issue | Penalty | Detection |
+|-------|---------|-----------|
+| Broken wikilink | **-10** | `[[target]]` resolving to no file |
+| Missing `description` | **-5** | YAML frontmatter without `description:` |
+| Orphan node | **-3** | File with zero incoming AND outgoing links |
+| Missing `type` | **-2** | Frontmatter without `type:` field |
+| Missing `domain` | **-1** | Frontmatter without `domain:` field |
+| Circular-only pair | **-2** | Node A and B only link to each other |
 
-**Bonuses:**
-- MOC coverage (+0 to +10): clusters that have a Map of Content node
-- Link density health (+0 to +10): penalizes dead-end nodes
+### Bonuses (max +20)
+| Signal | Bonus |
+|--------|-------|
+| MOC coverage | +0 to +10 (clusters_with_moc / total_clusters × 10) |
+| Link density health | +0 to +10 (penalizes dead-end nodes) |
 
 ## Output Format
 
@@ -34,10 +42,19 @@ Bonuses:
   ✅ MOC coverage: 3/4 clusters have MOC (+8)
   ✅ Link density: 1 dead end out of 24 nodes (+9)
 
+Stats:
+  Nodes: 24 | Edges: 47 | MOCs: 3 | Orphans: 1 | Broken links: 1
+
 To reach 100:
   1. Create thought-journals.md or fix the link in cognitive-reframing.md
-  2. Add description: to grounding-techniques.md frontmatter
+  2. Add `description:` to grounding-techniques.md frontmatter
   3. Add at least one link to/from case-formulation.md
 ```
+
+## Notes
+
+- Score is deterministic — same graph always produces same score
+- Validation runs on the local filesystem (no server needed)
+- Broken link detection is case-insensitive and handles spaces → hyphens
 
 $ARGUMENTS

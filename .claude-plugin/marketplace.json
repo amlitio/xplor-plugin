@@ -2,21 +2,25 @@
   "name": "xplor",
   "owner": {
     "name": "Xplor",
-    "url": "https://file-xplor.vercel.app"
+    "url": "https://github.com/amlitio/xplor-plugin"
   },
   "metadata": {
-    "description": "Structured cognition engine — knowledge graphs for AI agents",
-    "version": "1.0.0"
+    "description": "Structured cognition engine — knowledge graphs for AI agents. Three modes: Document (PDFs→entities), Code (repos→call-chains), Skill Graph (markdown→knowledge network). Includes agent, 5 commands, and the full Xplor spec.",
+    "version": "1.1.0",
+    "homepage": "https://file-xplor.vercel.app",
+    "repository": "https://github.com/amlitio/xplor-plugin",
+    "category": "developer-tools",
+    "keywords": ["knowledge-graph", "skill-graph", "code-analysis", "mcp", "agents", "wikilinks", "rag", "tree-sitter"]
   },
   "plugins": [
     {
       "name": "xplor",
       "source": "./",
-      "description": "Structured cognition engine that transforms documents, codebases, and knowledge systems into traversable AI-queryable knowledge graphs. Includes the xplor-expert agent, build/validate/scaffold/debug commands, and the complete Xplor skill.",
-      "version": "1.0.0",
+      "description": "Structured cognition engine that transforms documents, codebases, and knowledge systems into traversable AI-queryable knowledge graphs. Includes the xplor-expert agent, build/validate/scaffold/debug/fuse commands, and the complete Xplor specification as a Claude Code skill.",
+      "version": "1.1.0",
       "author": {
         "name": "Xplor",
-        "url": "https://file-xplor.vercel.app"
+        "url": "https://github.com/amlitio/xplor-plugin"
       },
       "keywords": ["knowledge-graph", "skill-graph", "code-analysis", "mcp", "agents", "rag"],
       "category": "developer-tools",

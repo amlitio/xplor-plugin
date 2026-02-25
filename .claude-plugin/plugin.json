@@ -1,12 +1,13 @@
 {
   "name": "xplor",
-  "version": "1.0.0",
-  "description": "Structured cognition engine — transforms documents, codebases, and knowledge systems into traversable AI-queryable knowledge graphs. Three modes: Document (PDF→entities), Code (repo→call-chains), Skill Graph (markdown→knowledge network).",
+  "version": "1.1.0",
+  "description": "Structured cognition engine — transforms documents, codebases, and knowledge systems into traversable AI-queryable knowledge graphs. Three modes: Document (PDF→entities), Code (repo→call-chains), Skill Graph (markdown+wikilinks→knowledge network). Includes xplor-expert agent, 5 commands, and the complete Xplor specification as a skill.",
   "author": {
     "name": "Xplor",
-    "url": "https://file-xplor.vercel.app"
+    "url": "https://github.com/amlitio/xplor-plugin"
   },
   "homepage": "https://file-xplor.vercel.app",
+  "repository": "https://github.com/amlitio/xplor-plugin",
   "license": "MIT",
   "keywords": [
     "knowledge-graph",
@@ -17,6 +18,9 @@
     "traversal",
     "agents",
     "wikilinks",
-    "rag"
+    "rag",
+    "tree-sitter",
+    "claude",
+    "ai"
   ]
 }

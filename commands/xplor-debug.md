@@ -1,45 +1,81 @@
 # xplor-debug
 
-Debug Xplor issues — graph traversal problems, API errors, progressive disclosure violations.
+Diagnose and fix Xplor issues — root cause analysis, exact file location, complete fix.
 
 ## Usage
-`/xplor-debug <issue>`
+`/xplor-debug "<issue>"`
 
 ## Common Issues
 
 ### Progressive Disclosure Violations
-`/xplor-debug "API returning content.full at level 1"`
-Traces through the API route, identifies where the level stripping is missing,
-outputs the exact fix.
+```bash
+/xplor-debug "API returning content.full at level 1"
+/xplor-debug "sections appearing in scan response"
+/xplor-debug "level field missing from node response"
+```
+Traces through the API route, finds where level stripping is broken, outputs exact fix.
 
 ### Broken Traversal
-`/xplor-debug "traverse returning empty path"`
-Checks: graph loaded correctly? start node exists? attention scoring returning 0?
-token budget too small?
+```bash
+/xplor-debug "traverse returning empty path"
+/xplor-debug "attention scores all returning 0"
+/xplor-debug "traversal exceeding token budget"
+```
+Checks: graph loaded? start node exists? attention scoring working? token budget too small?
 
 ### Wikilink Parsing Failures
-`/xplor-debug "wikilinks not extracting from my markdown"`
-Tests the regex against your content, identifies edge cases (pipe aliases,
-anchor links, special characters in filenames).
+```bash
+/xplor-debug "wikilinks not extracting from my markdown"
+/xplor-debug "pipe aliases breaking wikilink parser"
+/xplor-debug "anchor links #section not resolving"
+```
+Tests regex against your content, identifies edge cases (aliases, anchors, special chars).
 
-### Firebase/Firestore Errors
-`/xplor-debug "saveProject failing with permission-denied"`
-Checks security rules, auth state, document structure.
+### Graph Building Errors
+```bash
+/xplor-debug "duplicate node IDs in graph"
+/xplor-debug "edges referencing non-existent nodes"
+/xplor-debug "MOC clusters not being detected"
+```
 
-### Force Graph Not Rendering
-`/xplor-debug "graph canvas blank after upload"`
-Checks: data format, node/edge IDs match, simulation parameters.
+### Firebase / Firestore
+```bash
+/xplor-debug "saveProject failing with permission-denied"
+/xplor-debug "Firestore quota exceeded on upload"
+/xplor-debug "auth state not persisting after refresh"
+```
+Checks security rules, auth state, document structure, rate limits.
 
-### MCP Server Connection Failed
-`/xplor-debug "xplor mcp not connecting to Claude"`
-Checks: server transport, tool registration, graph loading.
+### Force Graph Rendering
+```bash
+/xplor-debug "graph canvas blank after upload"
+/xplor-debug "nodes overlapping at simulation start"
+/xplor-debug "edges not connecting to correct nodes"
+```
+Checks: data format, node/edge ID matching, simulation parameters, D3 force config.
 
-## Diagnostic Output
+### MCP Server
+```bash
+/xplor-debug "xplor mcp not connecting to Claude"
+/xplor-debug "tool registration failing"
+/xplor-debug "graph not loading in MCP context"
+```
+Checks: stdio transport, tool registration, graph file path, JSON serialization.
 
-For each issue, outputs:
-1. Root cause analysis
-2. Exact file and line number where the bug is
-3. Complete fix (not a patch — a correct implementation)
-4. How to verify the fix works
+### CLI Errors
+```bash
+/xplor-debug "xplor index failing on TypeScript repo"
+/xplor-debug "Tree-sitter WASM not loading"
+/xplor-debug "graph file not saving to ~/.xplor/"
+```
+
+## Diagnostic Output Format
+
+For every issue:
+
+1. **Root cause** — what is actually broken and why
+2. **Location** — exact file + line number
+3. **Complete fix** — not a patch, a correct implementation
+4. **Verification** — how to confirm the fix works
 
 $ARGUMENTS

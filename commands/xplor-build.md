@@ -1,29 +1,41 @@
 # xplor-build
 
-Build a complete Xplor component from scratch.
+Build a complete Xplor component from scratch — production-ready, Vercel-deployable.
 
 ## Usage
 `/xplor-build <component>`
 
-## Examples
-- `/xplor-build document-mode` — Build the full PDF upload → entity extraction → graph pipeline
-- `/xplor-build skill-graph-mode` — Build ZIP ingestion, wikilink parsing, MOC system
-- `/xplor-build mcp-server` — Build all 8 MCP tools (query, context, impact, traverse, scan, etc.)
-- `/xplor-build explorer` — Build the mode-aware force-directed graph Explorer component
-- `/xplor-build cli` — Build the xplor CLI (index, mcp, serve, skill, fuse commands)
-- `/xplor-build api-routes` — Build all Next.js API routes (extract, share, chat, skillgraph/*)
+## Components
+
+| Component | What Gets Built |
+|-----------|----------------|
+| `document-mode` | Full PDF upload → pdfjs-dist extraction → Claude entity extraction → Firestore persistence → Explorer |
+| `skill-graph-mode` | ZIP ingestion → gray-matter frontmatter parsing → sentence-level wikilink extraction → MOC system → quality scoring |
+| `code-mode` | Repo indexing → Tree-sitter WASM AST parsing → function/class/import entities → CALLS/IMPORTS/EXTENDS/DEFINES edges |
+| `mcp-server` | All 8 MCP tools (query, context, impact, callers, callees, search, traverse, scan) via stdio transport |
+| `explorer` | Mode-aware force-directed graph UI — document/code/skill/fused rendering, sidebar, progressive disclosure |
+| `cli` | xplor index/mcp/serve/skill/fuse commands via commander.js, ~/.xplor/ graph storage |
+| `api-routes` | All Next.js API routes: /api/extract, /api/share, /api/chat, /api/skillgraph/* |
+| `agent-intelligence` | Attention scoring, traversal heuristics, telemetry, multi-domain fusion, context packing |
+| `search` | Hybrid BM25 + cosine similarity + RRF fusion, field-weighted indexing |
+| `auth` | Firebase Auth (Google + Email), AuthContext, Pro subscription gating via Stripe |
 
 ## What This Does
 
-Analyzes the current state of the codebase, identifies what needs to be built,
-and produces complete, production-ready code that:
+1. Reads the current codebase state — understands what exists, what's missing
+2. Consults the GraphNode/GraphEdge canonical schema (graph-core)
+3. Enforces progressive disclosure levels 0-4 and token budgets
+4. Writes complete, tested, production-ready code — no TODOs, no stubs
+5. Integrates with existing architecture without breaking other modes
+6. Applies the dark theme design system (#0A0A0F, brand gradient, Space Grotesk)
+7. Includes rate limiting, security controls, and error handling
 
-1. Conforms to the GraphNode/GraphEdge canonical schema from graph-core
-2. Enforces progressive disclosure rules (levels 0-4, token budgets)
-3. Integrates with the existing architecture without breaking other modes
-4. Follows the dark theme design system (#0A0A0F, brand gradient, Space Grotesk)
-5. Includes proper error handling, rate limiting, and security controls
+## Quality Guarantees
 
-All code is deployable to Vercel immediately.
+- Node IDs: namespaced `skill:slug`, `code:path#Entity`, `doc:docId#entity-id`
+- Every API response includes `level` field on every node
+- `tokenBudget` is a hard ceiling — never exceeded
+- Wikilinks use sentence-level context (not line-level)
+- MOC nodes generate `CLUSTERS` edges (stronger than `REFERENCES`)
 
 $ARGUMENTS

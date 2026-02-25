@@ -282,7 +282,7 @@ Return format:
 Be thorough. Extract 10-30 entities per chunk. Include cross-references.
 ```
 
-Use `claude-sonnet-4-20250514`. max_tokens: 4096.
+Use `claude-sonnet-4-6`. max_tokens: 4096.
 PDF chunking: ~14,000 chars per chunk, up to 6 chunks.
 
 ### Firestore Schema
